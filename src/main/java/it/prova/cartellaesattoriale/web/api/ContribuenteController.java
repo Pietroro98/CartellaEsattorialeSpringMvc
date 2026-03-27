@@ -80,16 +80,7 @@ public class ContribuenteController {
      */
     @GetMapping("/verificaContenziosi")
     public List<ContribuenteDTO> verificaContenziosi() {
-        Set<Long> idsDaAttenzionare = new HashSet<>(contribuenteRepository.findIdsDaAttenzionare());
-        return contribuenteService.listAll(false).stream()
-                .map(contribuente -> {
-                    ContribuenteDTO dto = ContribuenteDTO.buildDTOFromModel(contribuente, false);
-                    if (idsDaAttenzionare.contains(contribuente.getId())) {
-                        dto.setDaAttenzionare(true);
-                    }
-                    return dto;
-                })
-                .toList();
+        return contribuenteService.verificaContenziosi();
     }
 
     /**

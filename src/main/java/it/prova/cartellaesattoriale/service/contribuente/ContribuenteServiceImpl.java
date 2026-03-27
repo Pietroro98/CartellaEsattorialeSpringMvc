@@ -1,4 +1,5 @@
 package it.prova.cartellaesattoriale.service.contribuente;
+import it.prova.cartellaesattoriale.dto.ContribuenteDTO;
 import it.prova.cartellaesattoriale.dto.ReportContribuentiDTO;
 import it.prova.cartellaesattoriale.model.Contribuente;
 import it.prova.cartellaesattoriale.model.StatoCartella;
@@ -7,7 +8,10 @@ import it.prova.cartellaesattoriale.web.exception.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Service
 @Transactional(readOnly = true)
@@ -48,6 +52,21 @@ public class ContribuenteServiceImpl implements ContribuenteService {
         contribuenteRepository.findById(id)
                 .orElseThrow(() -> new NotFoundException("Contribuente non trovato con id: " + id));
         contribuenteRepository.deleteById(id);
+    }
+
+    @Override
+    public List<ContribuenteDTO> verificaContenziosi() {
+        Set<Long> idsDaAttenzionare = new HashSet<>(contribuenteRepository.findIdsDaAttenzionare());
+
+        return listAll(false).stream()
+                .map(contribuente -> {
+                    ContribuenteDTO dto = ContribuenteDTO.buildDTOFromModel(contribuente, false);
+                    if (idsDaAttenzionare.contains(contribuente.getId())) {
+                        dto.setDaAttenzionare(true);
+                    }
+                    return dto;
+                })
+                .toList();
     }
 
     @Override
