@@ -2,7 +2,6 @@ package it.prova.cartellaesattoriale.dto;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import it.prova.cartellaesattoriale.model.CartellaEsattoriale;
-import it.prova.cartellaesattoriale.model.Contribuente;
 import it.prova.cartellaesattoriale.model.StatoCartella;
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.NotBlank;

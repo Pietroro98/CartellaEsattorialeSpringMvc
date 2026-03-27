@@ -1,8 +1,6 @@
 package it.prova.cartellaesattoriale.dto;
-
 import com.fasterxml.jackson.annotation.JsonInclude;
 import it.prova.cartellaesattoriale.model.StoricoEvase;
-
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
