@@ -3,7 +3,7 @@ package it.prova.cartellaesattoriale.repository.storico;
 import it.prova.cartellaesattoriale.model.StoricoEvase;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
-import jakarta.persistence.TypedQuery;
+import jakarta.persistence.Query;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.ArrayList;
@@ -21,7 +21,7 @@ public class StoricoEvaseRepositoryImpl implements StoricoEvaseRepositoryCustom 
         Map<String, Object> parameterMap = new HashMap<>();
         List<String> whereClauses = new ArrayList<>();
 
-        StringBuilder queryBuilder = new StringBuilder("select s from StoricoEvase s where s.id = s.id ");
+        StringBuilder queryBuilder = new StringBuilder("select * from storicoEvase s where 1=1 ");
 
         if (StringUtils.isNotEmpty(example.getIdCartellaOld())) {
             whereClauses.add("s.idCartellaOld like :idCartellaOld ");
@@ -56,15 +56,16 @@ public class StoricoEvaseRepositoryImpl implements StoricoEvaseRepositoryCustom 
             parameterMap.put("dataStoricizzazione", example.getDataStoricizzazione());
         }
 
-        queryBuilder.append(!whereClauses.isEmpty() ? " and " : "");
-        queryBuilder.append(StringUtils.join(whereClauses, " and "));
-
-        TypedQuery<StoricoEvase> typedQuery = entityManager.createQuery(queryBuilder.toString(), StoricoEvase.class);
-
-        for (String key : parameterMap.keySet()) {
-            typedQuery.setParameter(key, parameterMap.get(key));
+        if (!whereClauses.isEmpty()) {
+            queryBuilder.append(" and ").append(String.join(" and ", whereClauses));
         }
 
-        return typedQuery.getResultList();
+        Query query = entityManager.createNativeQuery(queryBuilder.toString(), StoricoEvase.class);
+
+        for (Map.Entry<String, Object> entry : parameterMap.entrySet()) {
+            query.setParameter(entry.getKey(), entry.getValue());
+        }
+
+        return query.getResultList();
     }
 }
