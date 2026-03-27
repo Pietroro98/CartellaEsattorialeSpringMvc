@@ -6,6 +6,7 @@ import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.Query;
 import org.apache.commons.lang3.StringUtils;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -67,5 +68,10 @@ public class StoricoEvaseRepositoryImpl implements StoricoEvaseRepositoryCustom 
         }
 
         return query.getResultList();
+    }
+
+    @Override
+    public List<StoricoEvaseProjection> findCartelleDaStoricizzare(LocalDate dataRiferimento) {
+        return List.of();
     }
 }
