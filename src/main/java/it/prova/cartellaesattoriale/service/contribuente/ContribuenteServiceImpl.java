@@ -1,5 +1,7 @@
 package it.prova.cartellaesattoriale.service.contribuente;
+import it.prova.cartellaesattoriale.dto.ReportContribuentiDTO;
 import it.prova.cartellaesattoriale.model.Contribuente;
+import it.prova.cartellaesattoriale.model.StatoCartella;
 import it.prova.cartellaesattoriale.repository.contribuente.ContribuenteRepository;
 import it.prova.cartellaesattoriale.web.exception.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,5 +48,14 @@ public class ContribuenteServiceImpl implements ContribuenteService {
         contribuenteRepository.findById(id)
                 .orElseThrow(() -> new NotFoundException("Contribuente non trovato con id: " + id));
         contribuenteRepository.deleteById(id);
+    }
+
+    @Override
+    public ReportContribuentiDTO generaReport() {
+        return new ReportContribuentiDTO(
+                contribuenteRepository.sumTutteLeCartelle(),
+                contribuenteRepository.sumByStato(StatoCartella.CONCLUSA),
+                contribuenteRepository.sumByStato(StatoCartella.IN_CONTENZIOSO)
+        );
     }
 }

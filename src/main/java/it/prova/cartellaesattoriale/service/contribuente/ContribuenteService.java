@@ -1,5 +1,6 @@
 package it.prova.cartellaesattoriale.service.contribuente;
 
+import it.prova.cartellaesattoriale.dto.ReportContribuentiDTO;
 import it.prova.cartellaesattoriale.model.Contribuente;
 
 import java.util.List;
@@ -11,4 +12,5 @@ public interface ContribuenteService {
     Contribuente inserisci(Contribuente contribuente);
     Contribuente aggiorna(Contribuente contribuente);
     void rimuovi(Long id);
+    ReportContribuentiDTO generaReport();
 }

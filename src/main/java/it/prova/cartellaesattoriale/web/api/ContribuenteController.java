@@ -1,9 +1,9 @@
 package it.prova.cartellaesattoriale.web.api;
 import it.prova.cartellaesattoriale.dto.ContribuenteDTO;
 import it.prova.cartellaesattoriale.dto.MessageDTO;
+import it.prova.cartellaesattoriale.dto.ReportContribuentiDTO;
 import it.prova.cartellaesattoriale.model.Contribuente;
 import it.prova.cartellaesattoriale.repository.contribuente.ContribuenteRepository;
-import it.prova.cartellaesattoriale.service.cartella.CartellaEsattorialeService;
 import it.prova.cartellaesattoriale.service.contribuente.ContribuenteService;
 import it.prova.cartellaesattoriale.web.exception.BadRequestException;
 import it.prova.cartellaesattoriale.web.exception.NotFoundException;
@@ -90,5 +90,16 @@ public class ContribuenteController {
                     return dto;
                 })
                 .toList();
+    }
+
+    /**
+     * Genera un report con i tot. di cartelle esattoriali per ogni contribuente,
+     * con un totale complessivo, un totale per le cartelle in stato CONCLUSA
+     * e un totale per le cartelle in stato IN_CONTENZIOSO.
+     * @return -> ReportContribuentiDTO con i totali richiesti.
+     */
+    @GetMapping("/reportContribuenti")
+    public ReportContribuentiDTO reportContribuenti() {
+        return contribuenteService.generaReport();
     }
 }

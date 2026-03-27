@@ -1,5 +1,4 @@
 package it.prova.cartellaesattoriale.service.cartella;
-
 import it.prova.cartellaesattoriale.model.CartellaEsattoriale;
 import it.prova.cartellaesattoriale.repository.cartella.CartellaEsattorialeRepository;
 import it.prova.cartellaesattoriale.web.exception.NotFoundException;
