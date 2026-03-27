@@ -6,8 +6,8 @@ import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
 
-public interface ContribuenteRepository extends JpaRepository<Contribuente, Long> {
-
+public interface ContribuenteRepository extends JpaRepository<Contribuente, Long>
+{
     @Query("select distinct c from Contribuente c left join fetch c.cartelle")
     List<Contribuente> findAllEager();
 
