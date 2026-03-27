@@ -1,47 +1,32 @@
-package it.prova.cartellaesattoriale.model;
-import jakarta.persistence.*;
+package it.prova.cartellaesattoriale.dto;
+
+import com.fasterxml.jackson.annotation.JsonInclude;
+import it.prova.cartellaesattoriale.model.StoricoEvase;
+
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
+import java.util.List;
+import java.util.stream.Collectors;
 
-@Entity
-@Table(name = "storicoEvase")
-public class StoricoEvase
+@JsonInclude(JsonInclude.Include.NON_NULL)
+public class StoricoEvaseDTO
 {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
     private Long id;
-
-    @Column(name = "idCartellaOld", nullable = false, unique = true)
     private String idCartellaOld;
-
-    @Column(name = "descrizioneOld", nullable = false)
     private String descrizioneOld;
-
-    @Column(name = "importoOld", nullable = false, scale = 2)
     private BigDecimal importoOld;
-
-    @Column(name = "dataCreazioneOld", nullable = false)
     private LocalDate dataCreazioneOld;
-
-    @Column(name = "nomeContribuenteOld", nullable = false)
     private String nomeContribuenteOld;
-
-    @Column(name = "cognomeContribuenteOld", nullable = false)
     private String cognomeContribuenteOld;
-
-    @Column(name = "codiceFiscaleOld", nullable = false)
     private String codiceFiscaleOld;
-
-    @Column(name = "dataStoricizzazione", nullable = false)
     private LocalDate dataStoricizzazione;
 
-    public StoricoEvase() {}
+    public StoricoEvaseDTO() {
+    }
 
-    public StoricoEvase(Long id, String idCartellaOld, String descrizioneOld, BigDecimal importoOld,
-                        LocalDate dataCreazioneOld, String nomeContribuenteOld, String cognomeContribuenteOld,
-                        String codiceFiscaleOld, LocalDate dataStoricizzazione) {
+    public StoricoEvaseDTO(Long id, String idCartellaOld, String descrizioneOld, BigDecimal importoOld,
+                           LocalDate dataCreazioneOld, String nomeContribuenteOld, String cognomeContribuenteOld,
+                           String codiceFiscaleOld, LocalDate dataStoricizzazione) {
         this.id = id;
         this.idCartellaOld = idCartellaOld;
         this.descrizioneOld = descrizioneOld;
@@ -124,4 +109,20 @@ public class StoricoEvase
     public void setDataStoricizzazione(LocalDate dataStoricizzazione) {
         this.dataStoricizzazione = dataStoricizzazione;
     }
+
+    public StoricoEvase buildModel() {
+        return new StoricoEvase(id, idCartellaOld, descrizioneOld, importoOld, dataCreazioneOld,
+                nomeContribuenteOld, cognomeContribuenteOld, codiceFiscaleOld, dataStoricizzazione);
+    }
+
+    public static StoricoEvaseDTO buildDTOFromModel(StoricoEvase model) {
+        return new StoricoEvaseDTO(model.getId(), model.getIdCartellaOld(), model.getDescrizioneOld(),
+                model.getImportoOld(), model.getDataCreazioneOld(), model.getNomeContribuenteOld(),
+                model.getCognomeContribuenteOld(), model.getCodiceFiscaleOld(), model.getDataStoricizzazione());
+    }
+
+    public static List<StoricoEvaseDTO> createListFromModelList(List<StoricoEvase> modelList) {
+        return modelList.stream().map(StoricoEvaseDTO::buildDTOFromModel).collect(Collectors.toList());
+    }
+
 }
