@@ -8,8 +8,8 @@ import java.util.Set;
 
 @Entity
 @Table(name = "contribuente")
-public class Contribuente {
-    //(id,nome,cognome,data di nascita, codiceFiscale,indirizzo)
+public class Contribuente
+{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
