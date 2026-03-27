@@ -1,5 +1,4 @@
 package it.prova.cartellaesattoriale.dto;
-
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import it.prova.cartellaesattoriale.model.Contribuente;
@@ -7,7 +6,6 @@ import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
-
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Set;

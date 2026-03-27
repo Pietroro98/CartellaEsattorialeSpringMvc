@@ -1,6 +1,7 @@
 package it.prova.cartellaesattoriale.service;
 import it.prova.cartellaesattoriale.model.Contribuente;
 import it.prova.cartellaesattoriale.repository.ContribuenteRepository;
+import it.prova.cartellaesattoriale.web.exception.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -43,7 +44,7 @@ public class ContribuenteServiceImpl implements ContribuenteService {
     @Override
     public void rimuovi(Long id) {
         contribuenteRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Contribuente non trovato con id: " + id));
+                .orElseThrow(() -> new NotFoundException("Contribuente non trovato con id: " + id));
         contribuenteRepository.deleteById(id);
     }
 }
