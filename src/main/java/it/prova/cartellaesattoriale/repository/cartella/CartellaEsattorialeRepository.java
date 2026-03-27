@@ -1,4 +1,4 @@
-package it.prova.cartellaesattoriale.repository;
+package it.prova.cartellaesattoriale.repository.cartella;
 import it.prova.cartellaesattoriale.model.CartellaEsattoriale;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;

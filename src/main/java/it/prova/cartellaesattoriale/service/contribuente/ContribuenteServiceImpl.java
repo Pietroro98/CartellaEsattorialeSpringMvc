@@ -1,6 +1,6 @@
-package it.prova.cartellaesattoriale.service;
+package it.prova.cartellaesattoriale.service.contribuente;
 import it.prova.cartellaesattoriale.model.Contribuente;
-import it.prova.cartellaesattoriale.repository.ContribuenteRepository;
+import it.prova.cartellaesattoriale.repository.contribuente.ContribuenteRepository;
 import it.prova.cartellaesattoriale.web.exception.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

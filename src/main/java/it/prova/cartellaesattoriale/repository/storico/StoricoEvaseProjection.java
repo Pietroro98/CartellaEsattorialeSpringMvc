@@ -1,4 +1,4 @@
-package it.prova.cartellaesattoriale.repository;
+package it.prova.cartellaesattoriale.repository.storico;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;

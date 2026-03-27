@@ -2,7 +2,7 @@ package it.prova.cartellaesattoriale.web.api;
 import it.prova.cartellaesattoriale.dto.ContribuenteDTO;
 import it.prova.cartellaesattoriale.dto.MessageDTO;
 import it.prova.cartellaesattoriale.model.Contribuente;
-import it.prova.cartellaesattoriale.service.ContribuenteService;
+import it.prova.cartellaesattoriale.service.contribuente.ContribuenteService;
 import it.prova.cartellaesattoriale.web.exception.BadRequestException;
 import it.prova.cartellaesattoriale.web.exception.NotFoundException;
 import jakarta.validation.Valid;

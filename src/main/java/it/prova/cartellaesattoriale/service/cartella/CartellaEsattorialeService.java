@@ -1,4 +1,4 @@
-package it.prova.cartellaesattoriale.service;
+package it.prova.cartellaesattoriale.service.cartella;
 import it.prova.cartellaesattoriale.model.CartellaEsattoriale;
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package it.prova.cartellaesattoriale.service;
+package it.prova.cartellaesattoriale.service.contribuente;
 
 import it.prova.cartellaesattoriale.model.Contribuente;
 
